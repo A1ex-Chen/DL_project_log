@@ -1,0 +1,12 @@
+def finalize(self, index_file):
+    self.out_file.close()
+    index = open(index_file, 'wb')
+    index.write(b'TNTIDX\x00\x00')
+    index.write(struct.pack('<Q', 1))
+    index.write(struct.pack('<QQ', code(self.dtype), self.element_size))
+    index.write(struct.pack('<QQ', len(self.data_offsets) - 1, len(self.sizes))
+        )
+    write_longs(index, self.dim_offsets)
+    write_longs(index, self.data_offsets)
+    write_longs(index, self.sizes)
+    index.close()

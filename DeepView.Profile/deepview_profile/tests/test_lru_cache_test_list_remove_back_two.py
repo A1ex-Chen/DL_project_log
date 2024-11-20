@@ -1,0 +1,10 @@
+def test_list_remove_back_two(self):
+    n1 = self.list.add_to_front(1, 1)
+    self.list.add_to_front(2, 2)
+    self.assertEqual(self.list.size, 2)
+    self.assertEqual(self.list_to_array(), [(2, 2), (1, 1)])
+    removed = self.list.remove_back()
+    self.assertEqual(removed, n1)
+    self.assertEqual(self.list_to_array(), [(2, 2)])
+    self.assertEqual(self.list_to_array(backward=True), [(2, 2)])
+    self.assertEqual(self.list.size, 1)

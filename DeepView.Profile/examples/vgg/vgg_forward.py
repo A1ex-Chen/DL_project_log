@@ -1,0 +1,12 @@
+def forward(self, x, target):
+    x = self.features(x)
+    x = self.avgpool(x)
+    x = torch.flatten(x, 1)
+    x = self.lin1(x)
+    x = self.relu(x)
+    x = self.dropout(x)
+    x = self.lin2(x)
+    x = self.relu(x)
+    x = self.dropout(x)
+    x = self.lin3(x)
+    return self.loss_fn(x, target)

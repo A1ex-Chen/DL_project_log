@@ -1,0 +1,14 @@
+def __init__(self, save_path):
+    self.save_path = save_path
+    self.user_factors = None
+    self.item_factors = None
+    self.user_ids = None
+    self.item_ids = None
+    self.ratings = None
+    self.user_item = None
+    self.error = 0
+    self.learning_rate = 0.05
+    self.bias_regularization = 0.002
+    self.user_regularization = 0.005
+    self.positive_item_regularization = 0.003
+    self.negative_item_regularization = 0.0003

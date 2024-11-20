@@ -1,0 +1,3 @@
+@abc.abstractmethod
+def download_object(self, object_name: str, destination_path: str):
+    ...

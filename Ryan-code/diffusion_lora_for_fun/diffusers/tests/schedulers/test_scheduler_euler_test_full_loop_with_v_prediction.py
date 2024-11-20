@@ -1,0 +1,6 @@
+def test_full_loop_with_v_prediction(self):
+    sample = self.full_loop(prediction_type='v_prediction')
+    result_sum = torch.sum(torch.abs(sample))
+    result_mean = torch.mean(torch.abs(sample))
+    assert abs(result_sum.item() - 0.0002) < 0.01
+    assert abs(result_mean.item() - 2.2676e-06) < 0.001

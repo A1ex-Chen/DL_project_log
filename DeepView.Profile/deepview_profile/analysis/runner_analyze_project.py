@@ -1,0 +1,25 @@
+def analyze_project(project_root, entry_point, nvml, enable_ddp_analysis):
+    session = AnalysisSession.new_from(project_root, entry_point)
+    release_memory()
+    print('analyze_project: running measure_breakdown()')
+    yield session.measure_breakdown(nvml)
+    release_memory()
+    print('analyze_project: running measure_throughput()')
+    yield session.measure_throughput()
+    release_memory()
+    print('analyze_project: running deepview_predict()')
+    yield session.habitat_predict()
+    release_memory()
+    print('analyze_project: running measure_utilization()')
+    yield session.measure_utilization()
+    release_memory()
+    print('analyze_project: running energy_compute()')
+    yield session.energy_compute()
+    if enable_ddp_analysis:
+        release_memory()
+        print('analyze_project: running ddp_computation()')
+        yield session.ddp_computation()
+    release_memory()
+    weakref.finalize(session, print, 'session object destroyed')
+    del session
+    yield None

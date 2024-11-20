@@ -1,0 +1,10 @@
+def test_cache_one(self):
+    cache = lru.LRUCache(max_size=1)
+    self.assertIsNone(cache.query(1))
+    cache.add(1, 1)
+    self.assertEqual(cache.query(1), 1)
+    cache.add(2, 2)
+    self.assertIsNone(cache.query(1))
+    self.assertEqual(cache.query(2), 2)
+    self.assertEqual(len(cache._cache_by_key), 1)
+    self.assertEqual(cache._cache_by_use.size, 1)

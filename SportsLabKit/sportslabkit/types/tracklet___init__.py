@@ -1,0 +1,10 @@
+def __init__(self, max_staleness: int=5):
+    self.id: int = int(str(int(uuid.uuid4()))[:12])
+    self.player_id: int = None
+    self.team_id: int = None
+    self.steps_alive: int = 0
+    self.global_step: int = 0
+    self.staleness: int = 0
+    self.max_staleness: int = max_staleness
+    self._observations: dict[str, list[Any]] = {}
+    self._states: dict[str, Any] = {}

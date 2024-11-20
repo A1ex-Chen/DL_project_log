@@ -1,0 +1,9 @@
+def __init__(self, cfg, is_train=True):
+    self.tfm_gens = build_transform_gen(cfg, is_train)
+    self.img_format = cfg.INPUT.FORMAT
+    self.mask_on = False
+    self.mask_format = cfg.INPUT.MASK_FORMAT
+    self.keypoint_on = False
+    self.load_proposals = False
+    self.keypoint_hflip_indices = None
+    self.is_train = is_train

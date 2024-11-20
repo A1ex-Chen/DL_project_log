@@ -1,0 +1,3 @@
+@abc.abstractmethod
+def exists(self, object_name: str) ->bool:
+    ...

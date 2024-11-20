@@ -1,0 +1,3 @@
+@abc.abstractmethod
+def delete_object(self, object_name: str):
+    ...

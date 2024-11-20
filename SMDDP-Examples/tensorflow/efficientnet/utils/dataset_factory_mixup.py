@@ -1,0 +1,23 @@
+def mixup(self, batch_size, alpha, images, labels):
+    """Applies Mixup regularization to a batch of images and labels.
+    [1] Hongyi Zhang, Moustapha Cisse, Yann N. Dauphin, David Lopez-Paz
+      Mixup: Beyond Empirical Risk Minimization.
+      ICLR'18, https://arxiv.org/abs/1710.09412
+    Arguments:
+      batch_size: The input batch size for images and labels.
+      alpha: Float that controls the strength of Mixup regularization.
+      images: A batch of images of shape [batch_size, ...]
+      labels: A batch of labels of shape [batch_size, num_classes]
+    Returns:
+      A tuple of (images, labels) with the same dimensions as the input with
+      Mixup regularization applied.
+    """
+    if alpha == 0.0:
+        images_mix_weight = tf.ones([batch_size, 1, 1, 1])
+        return (images, images_mix_weight), labels
+    mix_weight = tf.compat.v1.distributions.Beta(alpha, alpha).sample([
+        batch_size, 1])
+    mix_weight = tf.maximum(mix_weight, 1.0 - mix_weight)
+    images_mix_weight = tf.reshape(mix_weight, [batch_size, 1, 1, 1])
+    labels_mix = labels * mix_weight + labels[::-1] * (1.0 - mix_weight)
+    return (images, images_mix_weight), labels_mix

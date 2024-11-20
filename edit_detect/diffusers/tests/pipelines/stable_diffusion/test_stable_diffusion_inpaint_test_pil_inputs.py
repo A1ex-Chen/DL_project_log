@@ -1,0 +1,27 @@
+def test_pil_inputs(self):
+    height, width = 32, 32
+    im = np.random.randint(0, 255, (height, width, 3), dtype=np.uint8)
+    im = Image.fromarray(im)
+    mask = np.random.randint(0, 255, (height, width), dtype=np.uint8) > 127.5
+    mask = Image.fromarray((mask * 255).astype(np.uint8))
+    t_mask, t_masked, t_image = prepare_mask_and_masked_image(im, mask,
+        height, width, return_image=True)
+    self.assertTrue(isinstance(t_mask, torch.Tensor))
+    self.assertTrue(isinstance(t_masked, torch.Tensor))
+    self.assertTrue(isinstance(t_image, torch.Tensor))
+    self.assertEqual(t_mask.ndim, 4)
+    self.assertEqual(t_masked.ndim, 4)
+    self.assertEqual(t_image.ndim, 4)
+    self.assertEqual(t_mask.shape, (1, 1, height, width))
+    self.assertEqual(t_masked.shape, (1, 3, height, width))
+    self.assertEqual(t_image.shape, (1, 3, height, width))
+    self.assertTrue(t_mask.dtype == torch.float32)
+    self.assertTrue(t_masked.dtype == torch.float32)
+    self.assertTrue(t_image.dtype == torch.float32)
+    self.assertTrue(t_mask.min() >= 0.0)
+    self.assertTrue(t_mask.max() <= 1.0)
+    self.assertTrue(t_masked.min() >= -1.0)
+    self.assertTrue(t_masked.min() <= 1.0)
+    self.assertTrue(t_image.min() >= -1.0)
+    self.assertTrue(t_image.min() >= -1.0)
+    self.assertTrue(t_mask.sum() > 0.0)

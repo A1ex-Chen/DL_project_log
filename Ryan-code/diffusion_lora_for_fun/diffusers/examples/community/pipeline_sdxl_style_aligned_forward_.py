@@ -1,0 +1,5 @@
+def forward_(hidden_states: torch.Tensor) ->torch.Tensor:
+    n = hidden_states.shape[-2]
+    hidden_states = concat_first(hidden_states, dim=-2)
+    hidden_states = orig_forward(hidden_states)
+    return hidden_states[..., :n, :]

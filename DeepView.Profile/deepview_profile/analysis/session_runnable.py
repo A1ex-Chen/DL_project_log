@@ -1,0 +1,2 @@
+def runnable():
+    iteration(*inputs)

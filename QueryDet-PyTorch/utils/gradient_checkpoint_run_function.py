@@ -1,0 +1,7 @@
+def run_function(start, end, functions):
+
+    def forward(input):
+        for j in range(start, end + 1):
+            input = functions[j](input)
+        return input
+    return forward

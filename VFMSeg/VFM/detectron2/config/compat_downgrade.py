@@ -1,0 +1,10 @@
+@classmethod
+def downgrade(cls, cfg: CN) ->None:
+    super().downgrade(cfg)
+    _rename(cfg, 'MODEL.ANCHOR_GENERATOR.ASPECT_RATIOS',
+        'MODEL.RPN.ANCHOR_ASPECT_RATIOS')
+    _rename(cfg, 'MODEL.ANCHOR_GENERATOR.SIZES', 'MODEL.RPN.ANCHOR_SIZES')
+    cfg.MODEL.RETINANET.ANCHOR_ASPECT_RATIOS = (cfg.MODEL.RPN.
+        ANCHOR_ASPECT_RATIOS)
+    cfg.MODEL.RETINANET.ANCHOR_SIZES = cfg.MODEL.RPN.ANCHOR_SIZES
+    cfg.MODEL.RETINANET.ANCHOR_STRIDES = []

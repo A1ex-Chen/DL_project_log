@@ -1,0 +1,10 @@
+def __init__(self, **kwargs):
+    self.finetuning_task = kwargs.pop('finetuning_task', None)
+    self.num_labels = kwargs.pop('num_labels', 2)
+    self.output_attentions = kwargs.pop('output_attentions', False)
+    self.output_hidden_states = kwargs.pop('output_hidden_states', False)
+    self.output_past = kwargs.pop('output_past', True)
+    self.torchscript = kwargs.pop('torchscript', False)
+    self.use_bfloat16 = kwargs.pop('use_bfloat16', False)
+    self.pruned_heads = kwargs.pop('pruned_heads', {})
+    self.is_decoder = kwargs.pop('is_decoder', False)

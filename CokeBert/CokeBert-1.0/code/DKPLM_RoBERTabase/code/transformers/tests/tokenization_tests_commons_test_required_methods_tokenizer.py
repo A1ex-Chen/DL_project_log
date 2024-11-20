@@ -1,0 +1,12 @@
+def test_required_methods_tokenizer(self):
+    tokenizer = self.get_tokenizer()
+    input_text, output_text = self.get_input_output_texts()
+    tokens = tokenizer.tokenize(input_text)
+    ids = tokenizer.convert_tokens_to_ids(tokens)
+    ids_2 = tokenizer.encode(input_text, add_special_tokens=False)
+    self.assertListEqual(ids, ids_2)
+    tokens_2 = tokenizer.convert_ids_to_tokens(ids)
+    text_2 = tokenizer.decode(ids)
+    self.assertEqual(text_2, output_text)
+    self.assertNotEqual(len(tokens_2), 0)
+    self.assertIsInstance(text_2, (str, unicode))

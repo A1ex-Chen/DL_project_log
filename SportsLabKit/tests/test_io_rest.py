@@ -1,0 +1,84 @@
+import os
+import sys
+import unittest
+from pathlib import Path
+from tempfile import TemporaryDirectory
+
+import pandas as pd
+
+from soccertrack.utils.utils import auto_string_parser
+
+TEST_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_DIR = os.path.abspath(os.path.join(TEST_DIR, os.pardir))
+sys.path.insert(0, PROJECT_DIR)
+
+
+class TestIO(unittest.TestCase):
+
+    # def test_save_dataframe_load_dataframe(self):
+    #     with TemporaryDirectory() as tmpdir:
+    #         save_path = Path(tmpdir) / Path("dataframe.csv")
+
+    #         # Make a dataframe with multi-index columns
+    #         cols = pd.MultiIndex.from_tuples([
+    #             ('0', '0', 'A'),
+    #             ('0', '0', 'B'),
+    #         ])
+    #         dataframe = pd.DataFrame(
+    #             data=[[1, 2], [3, 4]],
+    #             index=['a', 'b'],
+    #             columns=cols
+    #         )
+
+    #         dataframe.attrs = {
+    #             'testinging': 'test',
+    #             '420': 420,
+    #             '2.6': 2.6
+    #         }
+
+    #         save_dataframe(dataframe, save_path)
+    #         self.assertTrue(save_path.exists())
+
+    #         loaded_dataframe = load_dataframe(save_path)
+
+    #         pd.testing.assert_frame_equal(loaded_dataframe, dataframe)
+    #         self.assertDictEqual(
+    #             loaded_dataframe.attrs,
+    #             dataframe.attrs
+    #         )
+
+
+#     def test_save_dataframe_load_dataframe(self):
+#         with TemporaryDirectory() as tmpdir:
+#             save_path = Path(tmpdir) / Path("dataframe.csv")
+
+#             # Make a dataframe with multi-index columns
+#             cols = pd.MultiIndex.from_tuples([
+#                 ('0', '0', 'A'),
+#                 ('0', '0', 'B'),
+#             ])
+#             dataframe = pd.DataFrame(
+#                 data=[[1, 2], [3, 4]],
+#                 index=['a', 'b'],
+#                 columns=cols
+#             )
+
+#             dataframe.attrs = {
+#                 'testinging': 'test',
+#                 '420': 420,
+#                 '2.6': 2.6
+#             }
+
+#             save_dataframe(dataframe, save_path)
+#             self.assertTrue(save_path.exists())
+
+#             loaded_dataframe = load_dataframe(save_path)
+
+#             pd.testing.assert_frame_equal(loaded_dataframe, dataframe)
+#             self.assertDictEqual(
+#                 loaded_dataframe.attrs,
+#                 dataframe.attrs
+#             )
+
+# if __name__ == "__main__":
+#     unittest.main()

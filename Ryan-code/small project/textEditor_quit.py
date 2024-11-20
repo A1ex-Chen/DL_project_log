@@ -1,0 +1,2 @@
+def quit():
+    window.destroy()
